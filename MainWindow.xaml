@@ -4,9 +4,70 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopApp"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" Name="Root"
+        Title="Список игрушек" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="5">
+            <TextBlock Text="Список игрушек" FontWeight="Bold" VerticalAlignment="Center"/>
+            <Button x:Name="Button_ChangeUserMode" Content="Перейти в режим администратора" HorizontalAlignment="Right" DockPanel.Dock="Right" Click="Button_ChangeUserMode_Click"/>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <Label Content="Поиск:" Target="{Binding ElementName=SearchBox}"/>
+            <TextBox x:Name="SearchBox"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Сортировка:" Target="{Binding ElementName=SortBox}"/>
+            <ComboBox x:Name="SortBox">
+                <ComboBoxItem Content="Любой" Tag="Any" IsSelected="True"/>
+                <ComboBoxItem Content="По возрастанию стоимости" Tag="CostAscending"/>
+                <ComboBoxItem Content="По убыванию стоимости" Tag="CostDescending"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+            <Label Content="Фильтрация:" Target="{Binding ElementName=FilterBox}"/>
+            <ComboBox x:Name="FilterBox"/>
+        </StackPanel>
+
+        <ListView x:Name="ToyList" Grid.Row="2" Grid.ColumnSpan="3" Margin="5" DataContext="{Binding ElementName=Root}" ItemsSource="{Binding ToysCV}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Описание">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Cost}"/>
+                        <GridViewColumn Header="Вес" DisplayMemberBinding="{Binding Weight}"/>
+                        <GridViewColumn Header="Ширина" DisplayMemberBinding="{Binding Width}"/>
+                        <GridViewColumn Header="Высота" DisplayMemberBinding="{Binding Height}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Margin="5" Orientation="Horizontal">
+            <Button x:Name="Button_Add" Margin="0,0,5,0" Content="Добавить"/>
+            <Button x:Name="Button_Edit" Margin="0,0,5,0" Content="Редактировать"/>
+            <Button x:Name="Button_Delete" Margin="0,0,5,0" Content="Удалить"/>
+        </StackPanel>
     </Grid>
 </Window>

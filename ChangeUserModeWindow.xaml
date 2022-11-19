@@ -1,0 +1,13 @@
+﻿<Window x:Class="ShopApp.ChangeUserModeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShopApp"
+        mc:Ignorable="d" SizeToContent="WidthAndHeight"
+        Title="ChangeUserModeWindow">
+    <StackPanel>
+        <TextBox x:Name="CodeBox"/>
+        <Button x:Name="Button_Authorize" Content="Перейти" Click="Button_Authorize_Click"/>
+    </StackPanel>
+</Window>

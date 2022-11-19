@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopApp.Components;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace ShopApp
     /// </summary>
     public partial class App : Application
     {
+        public static ShopEntities db = new ShopEntities();
+        public static UserMode CurrentUserMode = UserMode.User;
     }
 }
